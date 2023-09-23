@@ -37,7 +37,8 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background) {
-                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
+//                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
+                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
                 }
             }
         }
@@ -88,11 +89,57 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
     }
 }
 
+@Composable
+fun ComposeArticle(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
+    Box(modifier){
+        Image(
+            painter = painterResource(id = R.drawable.bg_compose_background),
+            contentDescription = null,
+        )
+        Content(
+            theme = theme,
+            littlew = littlew,
+            highw = highw,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+    }
+}
+
+@Composable
+fun Content(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+    ){
+        Text(
+            text = theme,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(16.dp)
+        )
+        Text(
+            text =littlew,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier
+                .padding(start = 16.dp)
+                .padding(end = 16.dp)
+        )
+        Text(
+            text =highw,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier
+                .padding(16.dp)
+        )
+    }
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     MyApplication1Theme {
-        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
+//        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
+      ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
     }
 }
