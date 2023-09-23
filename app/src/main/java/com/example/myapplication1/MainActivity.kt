@@ -37,11 +37,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background) {
-//                    GreetingImage(stringResource(R.string.happy_birthday_text),
-//                        stringResource(R.string.signature_text)
-//                    )
-//                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
-                        TaskManager(first = "All Tasks completed", second = "Nice Work!")
+                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
                 }
             }
         }
@@ -75,7 +71,6 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) {
-    // Create a box to overlap image and texts
     Box(modifier) {
         Image(
             painter = painterResource(id = R.drawable.androidparty),
@@ -93,86 +88,11 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier) 
     }
 }
 
-@Composable
-fun ComposeArticle(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
-    Box(modifier){
-        Image(
-            painter = painterResource(id = R.drawable.bg_compose_background),
-            contentDescription = null,
-        )
-        Content(
-            theme = theme,
-            littlew = littlew,
-            highw = highw,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-        )
-        }
-    }
-
-@Composable
-fun Content(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = modifier
-    ){
-        Text(
-            text = theme,
-            fontSize = 24.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(16.dp)
-        )
-        Text(
-            text =littlew,
-            textAlign = TextAlign.Justify,
-            modifier = Modifier
-                .padding(start = 16.dp)
-                .padding(end = 16.dp)
-        )
-        Text(
-            text =highw,
-            textAlign = TextAlign.Justify,
-            modifier = Modifier
-                .padding(16.dp)
-        )
-    }
-}
-
-@Composable
-fun TaskManager(first: String, second: String, modifier: Modifier = Modifier){
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-        ){
-        Image(
-            painter = painterResource(id = R.drawable.ic_task_completed),
-            contentDescription = null
-        )
-        Text(
-            text = first,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(top = 24.dp)
-                .padding(bottom = 8.dp)
-        )
-        Text(
-            text=second,
-            fontSize = 16.sp
-        )
-
-    }
-
-}
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     MyApplication1Theme {
-//        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
-//        ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
-        TaskManager(first = "All Tasks Completed", second = "Nice Work!")
+        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
     }
 }
