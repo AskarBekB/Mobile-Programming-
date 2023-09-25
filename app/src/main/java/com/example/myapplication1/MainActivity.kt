@@ -25,8 +25,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
@@ -40,6 +44,7 @@ class MainActivity : ComponentActivity() {
 //                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
 //                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
                     TaskManager(first = "All Tasks completed", second = "Nice Work!")
+                    ColumnTexting(Texting = "Text compasable", Desc = stringResource(R.string.firstDesc), BackGround = Color.Magenta)
                 }
             }
         }
@@ -109,7 +114,7 @@ fun ComposeArticle(theme: String, littlew: String, highw: String, modifier: Modi
 }
 
 @Composable
-fun Content(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
+private  fun Content(theme: String, littlew: String, highw: String, modifier: Modifier = Modifier){
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
@@ -162,12 +167,42 @@ fun TaskManager(first: String, second: String, modifier: Modifier = Modifier){
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+
+@Composable
+fun ColumnTexting(
+    Texting: String,
+    Desc: String,
+    BackGround: Color,
+    modifier: Modifier = Modifier
+){
+  Column(
+      verticalArrangement = Arrangement.Center,
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = modifier
+          .fillMaxSize()
+          .background(BackGround)
+          .padding(16.dp)
+  ) {
+      Text(
+          text = Texting,
+          fontWeight = FontWeight.Bold,
+          modifier = Modifier.padding(bottom = 16.dp),
+      )
+      Text(
+          text = Desc,
+          textAlign = TextAlign.Justify,
+          color = Color.Black
+      )
+  }
+}
+
+@Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun GreetingPreview() {
     MyApplication1Theme {
 //        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
 //      ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
-        TaskManager(first = "All Tasks Completed", second = "Nice Work!")
+//        TaskManager(first = "All Tasks Completed", second = "Nice Work!"),firstDesc
+        ColumnTexting(Texting = "Text compasable", Desc = stringResource(R.string.firstDesc), BackGround = Color.Magenta)
     }
 }
