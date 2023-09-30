@@ -29,6 +29,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
@@ -43,8 +45,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background) {
 //                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
 //                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
-                    TaskManager(first = "All Tasks completed", second = "Nice Work!")
-                    ColumnTexting(Texting = "Text compasable", Desc = stringResource(R.string.firstDesc), BackGround = Color.Magenta)
+//                    TaskManager(first = "All Tasks completed", second = "Nice Work!")
+                    val textingArray = stringArrayResource(R.array.text_array).toList()
+                    val descArray = stringArrayResource(R.array.desc_array).toList()
+                    val backgroundColors = listOf(
+                        colorResource(id = R.color.color1),
+                        colorResource(id = R.color.color2),
+                        colorResource(id = R.color.color3),
+                        colorResource(id = R.color.color4),
+                    )
+
+                    Task4(
+                        TextingArray = textingArray,
+                        DescArray = descArray,
+                        BackgroundColors = backgroundColors
+                    )
                 }
             }
         }
@@ -169,10 +184,37 @@ fun TaskManager(first: String, second: String, modifier: Modifier = Modifier){
 
 
 @Composable
+fun Task4(
+    TextingArray: List<String>,
+    DescArray: List<String>,
+    BackgroundColors: List<Color>,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = Modifier.fillMaxSize()) {
+        val rowColumnCount = 2
+
+        TextingArray.forEachIndexed { index, Texting ->
+            Row(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(4.dp)
+            ) {
+                ColumnTexting(
+                    Texting = Texting,
+                    Desc = DescArray.getOrNull(index) ?: "",
+                    Background = BackgroundColors.getOrElse(index % BackgroundColors.size) { Color.White },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun ColumnTexting(
     Texting: String,
     Desc: String,
-    BackGround: Color,
+    Background: Color,
     modifier: Modifier = Modifier
 ){
   Column(
@@ -180,7 +222,7 @@ fun ColumnTexting(
       horizontalAlignment = Alignment.CenterHorizontally,
       modifier = modifier
           .fillMaxSize()
-          .background(BackGround)
+          .background(Background)
           .padding(16.dp)
   ) {
       Text(
@@ -196,6 +238,7 @@ fun ColumnTexting(
   }
 }
 
+
 @Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun GreetingPreview() {
@@ -203,6 +246,19 @@ fun GreetingPreview() {
 //        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
 //      ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
 //        TaskManager(first = "All Tasks Completed", second = "Nice Work!"),firstDesc
-        ColumnTexting(Texting = "Text compasable", Desc = stringResource(R.string.firstDesc), BackGround = Color.Magenta)
+        val textingArray = stringArrayResource(R.array.text_array).toList()
+        val descArray = stringArrayResource(R.array.desc_array).toList()
+        val backgroundColors = listOf(
+            colorResource(id = R.color.color1),
+            colorResource(id = R.color.color2),
+            colorResource(id = R.color.color3),
+            colorResource(id = R.color.color4),
+        )
+
+        Task4(
+            TextingArray = textingArray,
+            DescArray = descArray,
+            BackgroundColors = backgroundColors
+        )
     }
 }

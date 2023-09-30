@@ -4,8 +4,16 @@
     <string name="signature_text">From Elma</string>
     <string name="little_w">Jetpack Compose is a modern toolkit for building native Android UI. Compose simplifies and accelerates UI development on Android with less code, powerful tools, and intuitive Kotlin APIs.</string>
     <string name="high_w">In this tutorial, you build a simple UI component with declarative functions. You call Compose functions to say what elements you want and the Compose compiler does the rest. Compose is built around Composable functions. These functions let you define your app\\\'s UI programmatically because they let you describe how it should look and provide data dependencies, rather than focus on the process of the UI\\\'s construction, such as initializing an element and then attaching it to a parent. To create a Composable function, you add the @Composable annotation to the function name.</string>
-    <string name="firstDesc">Displays text and follows the recommended Material Design guidelines.</string>
-    <string name="seconDesc">Creates a composable that lays out and draws a given Painter class object.</string>
-    <string name="thirdDesc">A layout composable that places its children in a horizontal sequence.</string>
-    <string name="fourthDesc">A layout composable that places its children in a vertical sequence.</string>
+    <string-array name="desc_array">
+        <item>Displays text and follows the recommended Material Design guidelines.</item>
+        <item>Creates a composable that lays out and draws a given Painter class object.</item>
+        <item>A layout composable that places its children in a horizontal sequence.</item>
+        <item>A layout composable that places its children in a vertical sequence.</item>
+    </string-array>
+    <string-array name="text_array">
+        <item>Text composable</item>
+        <item>Image composable</item>
+        <item>Row composable</item>
+        <item>Row composable</item>
+    </string-array>
 </resources>
