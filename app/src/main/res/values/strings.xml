@@ -7,12 +7,16 @@
     <string-array name="desc_array">
         <item>Displays text and follows the recommended Material Design guidelines.</item>
         <item>Creates a composable that lays out and draws a given Painter class object.</item>
+    </string-array>
+    <string-array name="second_desc">
         <item>A layout composable that places its children in a horizontal sequence.</item>
         <item>A layout composable that places its children in a vertical sequence.</item>
     </string-array>
     <string-array name="text_array">
         <item>Text composable</item>
         <item>Image composable</item>
+    </string-array>
+    <string-array name="second_text">
         <item>Row composable</item>
         <item>Row composable</item>
     </string-array>

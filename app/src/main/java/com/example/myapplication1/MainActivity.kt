@@ -28,6 +28,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringArrayResource
@@ -46,19 +47,25 @@ class MainActivity : ComponentActivity() {
 //                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
 //                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
 //                    TaskManager(first = "All Tasks completed", second = "Nice Work!")
-                    val textingArray = stringArrayResource(R.array.text_array).toList()
-                    val descArray = stringArrayResource(R.array.desc_array).toList()
+                    val firstArray = stringArrayResource(R.array.text_array).toList()
+                    val firstdesc = stringArrayResource(R.array.desc_array).toList()
+                    val secondArray = stringArrayResource(R.array.second_text).toList()
+                    val secondDesc = stringArrayResource(R.array.second_desc).toList()
                     val backgroundColors = listOf(
                         colorResource(id = R.color.color1),
                         colorResource(id = R.color.color2),
+                    )
+                    val secondBackground = listOf(
                         colorResource(id = R.color.color3),
                         colorResource(id = R.color.color4),
                     )
-
                     Task4(
-                        TextingArray = textingArray,
-                        DescArray = descArray,
-                        BackgroundColors = backgroundColors
+                        FirstTextingArray = firstArray,
+                        FirstDescArray = firstdesc,
+                        FirstBackgroundColors = backgroundColors,
+                        SecondTextingArray = secondArray,
+                        SecondDescArray = secondDesc,
+                        SecondBackground = secondBackground
                     )
                 }
             }
@@ -185,26 +192,45 @@ fun TaskManager(first: String, second: String, modifier: Modifier = Modifier){
 
 @Composable
 fun Task4(
-    TextingArray: List<String>,
-    DescArray: List<String>,
-    BackgroundColors: List<Color>,
+    FirstTextingArray: List<String>,
+    FirstDescArray: List<String>,
+    FirstBackgroundColors: List<Color>,
+    SecondTextingArray: List<String>,
+    SecondDescArray: List<String>,
+    SecondBackground: List<Color>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        val rowColumnCount = 2
-
-        TextingArray.forEachIndexed { index, Texting ->
-            Row(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(4.dp)
-            ) {
-                ColumnTexting(
-                    Texting = Texting,
-                    Desc = DescArray.getOrNull(index) ?: "",
-                    Background = BackgroundColors.getOrElse(index % BackgroundColors.size) { Color.White },
-                    modifier = Modifier.weight(1f)
-                )
+    Column() {
+        Row(
+            modifier = Modifier
+                .height(300.dp)
+        ) {
+            FirstTextingArray.forEachIndexed { index, Texting ->
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(4.dp)
+                ) {
+                    ColumnTexting(
+                        Texting = Texting,
+                        Desc = FirstDescArray.getOrNull(index) ?: "",
+                        Background = FirstBackgroundColors.getOrElse(index % FirstBackgroundColors.size) { Color.White },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+        Row (
+            modifier = Modifier
+            .height(300.dp)
+        ){
+             SecondTextingArray.forEachIndexed{ i, Texting ->
+                    ColumnTexting(
+                        Texting = Texting,
+                        Desc = SecondDescArray.getOrNull(i) ?:"",
+                        Background = SecondBackground.getOrElse(i % SecondBackground.size){Color.White},
+                        modifier = Modifier.weight(1f)
+                    )
             }
         }
     }
@@ -239,26 +265,32 @@ fun ColumnTexting(
 }
 
 
-@Preview(showBackground = true, showSystemUi = false)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     MyApplication1Theme {
 //        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
 //      ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
 //        TaskManager(first = "All Tasks Completed", second = "Nice Work!"),firstDesc
-        val textingArray = stringArrayResource(R.array.text_array).toList()
-        val descArray = stringArrayResource(R.array.desc_array).toList()
+        val firstArray = stringArrayResource(R.array.text_array).toList()
+        val firstdesc = stringArrayResource(R.array.desc_array).toList()
+        val secondArray = stringArrayResource(R.array.second_text).toList()
+        val secondDesc = stringArrayResource(R.array.second_desc).toList()
         val backgroundColors = listOf(
             colorResource(id = R.color.color1),
             colorResource(id = R.color.color2),
+        )
+        val secondBackground = listOf(
             colorResource(id = R.color.color3),
             colorResource(id = R.color.color4),
         )
-
         Task4(
-            TextingArray = textingArray,
-            DescArray = descArray,
-            BackgroundColors = backgroundColors
+            FirstTextingArray = firstArray,
+            FirstDescArray = firstdesc,
+            FirstBackgroundColors = backgroundColors,
+            SecondTextingArray = secondArray,
+            SecondDescArray = secondDesc,
+            SecondBackground = secondBackground
         )
     }
 }
