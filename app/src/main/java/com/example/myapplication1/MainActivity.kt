@@ -1,6 +1,7 @@
 package com.example.myapplication1
 
 import android.os.Bundle
+import android.provider.ContactsContract.Profile
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,6 +30,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringArrayResource
@@ -47,26 +50,27 @@ class MainActivity : ComponentActivity() {
 //                    GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(R.string.signature_text))
 //                    ComposeArticle(theme = "Jetpack Composes Tutroital", littlew = stringResource(id = R.string.little_w), highw = stringResource(id = R.string.high_w))
 //                    TaskManager(first = "All Tasks completed", second = "Nice Work!")
-                    val firstArray = stringArrayResource(R.array.text_array).toList()
-                    val firstdesc = stringArrayResource(R.array.desc_array).toList()
-                    val secondArray = stringArrayResource(R.array.second_text).toList()
-                    val secondDesc = stringArrayResource(R.array.second_desc).toList()
-                    val backgroundColors = listOf(
-                        colorResource(id = R.color.color1),
-                        colorResource(id = R.color.color2),
-                    )
-                    val secondBackground = listOf(
-                        colorResource(id = R.color.color3),
-                        colorResource(id = R.color.color4),
-                    )
-                    Task4(
-                        FirstTextingArray = firstArray,
-                        FirstDescArray = firstdesc,
-                        FirstBackgroundColors = backgroundColors,
-                        SecondTextingArray = secondArray,
-                        SecondDescArray = secondDesc,
-                        SecondBackground = secondBackground
-                    )
+//                    val firstArray = stringArrayResource(R.array.text_array).toList()
+//                    val firstdesc = stringArrayResource(R.array.desc_array).toList()
+//                    val secondArray = stringArrayResource(R.array.second_text).toList()
+//                    val secondDesc = stringArrayResource(R.array.second_desc).toList()
+//                    val backgroundColors = listOf(
+//                        colorResource(id = R.color.color1),
+//                        colorResource(id = R.color.color2),
+//                    )
+//                    val secondBackground = listOf(
+//                        colorResource(id = R.color.color3),
+//                        colorResource(id = R.color.color4),
+//                    )
+//                    Task4(
+//                        FirstTextingArray = firstArray,
+//                        FirstDescArray = firstdesc,
+//                        FirstBackgroundColors = backgroundColors,
+//                        SecondTextingArray = secondArray,
+//                        SecondDescArray = secondDesc,
+//                        SecondBackground = secondBackground
+//                    )
+                    Profile()
                 }
             }
         }
@@ -264,6 +268,70 @@ fun ColumnTexting(
   }
 }
 
+@Composable
+fun Profile(){
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(4.dp).background(Color.Gray)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+        ){
+            Image(
+                painter = painterResource(id = R.drawable.profile),
+                contentDescription = null
+            )
+            Text(
+                text = "Askar Bekbergen",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .padding(bottom = 8.dp)
+            )
+            Text(
+                text="Mobile Programmer",
+                fontSize = 16.sp
+            )
+        }
+        Column(modifier = Modifier.height(150.dp)){}
+        Column {
+            Row {
+                Image(
+                    painter = painterResource(id = R.drawable.phone),
+                    contentDescription = null
+                )
+                Text(
+                    text = "+7 708 715 35 10",
+                    fontSize = 16.sp
+                )
+            }
+            Row {
+                Image(
+                    painter = painterResource(id = R.drawable.person),
+                    contentDescription = null
+                )
+                Text(
+                    text = "@software_development",
+                    fontSize = 16.sp
+                )
+            }
+            Row{
+                Image(
+                    painter = painterResource(id = R.drawable.mail),
+                    contentDescription = null
+                )
+                Text(
+                    text = "xhamster.com/rayimbel#Beka.com",
+                    fontSize = 16.sp
+                )
+            }
+        }
+    }
+}
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -272,25 +340,26 @@ fun GreetingPreview() {
 //        GreetingImage(stringResource(R.string.happy_birthday_text), stringResource(id = R.string.signature_text))
 //      ComposeArticle(theme = "Jetpack Compose Tutorial", littlew = stringResource(R.string.little_w), highw = stringResource(R.string.high_w))
 //        TaskManager(first = "All Tasks Completed", second = "Nice Work!"),firstDesc
-        val firstArray = stringArrayResource(R.array.text_array).toList()
-        val firstdesc = stringArrayResource(R.array.desc_array).toList()
-        val secondArray = stringArrayResource(R.array.second_text).toList()
-        val secondDesc = stringArrayResource(R.array.second_desc).toList()
-        val backgroundColors = listOf(
-            colorResource(id = R.color.color1),
-            colorResource(id = R.color.color2),
-        )
-        val secondBackground = listOf(
-            colorResource(id = R.color.color3),
-            colorResource(id = R.color.color4),
-        )
-        Task4(
-            FirstTextingArray = firstArray,
-            FirstDescArray = firstdesc,
-            FirstBackgroundColors = backgroundColors,
-            SecondTextingArray = secondArray,
-            SecondDescArray = secondDesc,
-            SecondBackground = secondBackground
-        )
+//        val firstArray = stringArrayResource(R.array.text_array).toList()
+//        val firstdesc = stringArrayResource(R.array.desc_array).toList()
+//        val secondArray = stringArrayResource(R.array.second_text).toList()
+//        val secondDesc = stringArrayResource(R.array.second_desc).toList()
+//        val backgroundColors = listOf(
+//            colorResource(id = R.color.color1),
+//            colorResource(id = R.color.color2),
+//        )
+//        val secondBackground = listOf(
+//            colorResource(id = R.color.color3),
+//            colorResource(id = R.color.color4),
+//        )
+//        Task4(
+//            FirstTextingArray = firstArray,
+//            FirstDescArray = firstdesc,
+//            FirstBackgroundColors = backgroundColors,
+//            SecondTextingArray = secondArray,
+//            SecondDescArray = secondDesc,
+//            SecondBackground = secondBackground
+//        )
+        Profile()
     }
 }
