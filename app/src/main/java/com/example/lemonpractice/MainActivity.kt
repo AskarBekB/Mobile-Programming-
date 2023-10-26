@@ -30,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.unit.sp
 import com.example.lemonpractice.ui.theme.LemonPracticeTheme
 
 
@@ -58,24 +60,41 @@ fun Lemonade() {
         .wrapContentSize(Alignment.Center))
 }
 
+
+
+
+
+
 @Composable
-fun LemonadePreview(modifier: Modifier = Modifier) {
-    val result = 
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Image(
-            painter = painterResource(R.drawable.lemon_drink),
-            contentDescription = null,
-            modifier = Modifier
-                .background(colorResource(R.color.image_background))
-                .padding(12.dp)
-        )
-        Spacer(modifier = Modifier.height(35.dp))
-        Text(
-            text = "Just some Text"
-        )
-    }
+fun LemonadePreview(
+    textResource: Int,
+    drawableId: Int,
+    contentDescId: Int,
+    imageClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val result =
+        Column(
+            modifier = modifier,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Button(
+                onClick = imageClick,
+            )
+            {
+                Image(
+                    painter = painterResource(drawableId),
+                    contentDescription = stringResource(contentDescId),
+                    modifier = Modifier
+                        .background(colorResource(R.color.image_background))
+                        .padding(12.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(35.dp))
+            Text(
+                text = stringResource(textResource),
+                fontSize = 18.sp
+            )
+        }
 }
