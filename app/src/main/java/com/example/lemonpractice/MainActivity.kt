@@ -54,22 +54,78 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun Lemonade() {
-    LemonadePreview(modifier = Modifier
+fun LemonadePreview() {
+    LemonApp(modifier = Modifier
         .fillMaxSize()
         .wrapContentSize(Alignment.Center))
 }
 
 
+@Composable
+fun LemonApp(
+    modifier: Modifier = Modifier
+){
+    var result by remember { mutableStateOf(1) }
+    var squeeze by remember { mutableStateOf(0) }
 
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(12.dp)
+            .background(MaterialTheme.colorScheme.tertiaryContainer),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        when(result){
+            1 -> {
+                Lemonade(
+                    textResource = R.string.lemon_tree,
+                    drawableId = R.drawable.lemon_tree,
+                    imageClick = {
+                        result = 2
+                        squeeze = (2..4).random()
+                    }
+                )
+            }
+            2 -> {
+                Lemonade(
+                    textResource = R.string.lemon,
+                    drawableId = R.drawable.lemon_squeeze,
+                    imageClick = {
+                        squeeze--
+                        if(squeeze == 0){
+                            result = 3
+                        }
+                    }
+                )
+            }
+            3 -> {
+                Lemonade(
+                    textResource = R.string.glass_of_lemonade,
+                    drawableId = R.drawable.lemon_drink,
+                    imageClick = {
+                        result = 4
+                    }
+                )
+            }
+            4 -> {
+                Lemonade(
+                    textResource = R.string.empty_class,
+                    drawableId = R.drawable.lemon_restart,
+                    imageClick = {
+                        result = 1
+                    }
+                )
+            }
+        }
+    }
+}
 
 
 
 @Composable
-fun LemonadePreview(
+fun Lemonade(
     textResource: Int,
     drawableId: Int,
-    contentDescId: Int,
     imageClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -85,7 +141,7 @@ fun LemonadePreview(
             {
                 Image(
                     painter = painterResource(drawableId),
-                    contentDescription = stringResource(contentDescId),
+                    contentDescription = stringResource(null),
                     modifier = Modifier
                         .background(colorResource(R.color.image_background))
                         .padding(12.dp)
