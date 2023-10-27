@@ -142,7 +142,6 @@ fun Lemonade(
                     painter = painterResource(drawableId),
                     contentDescription = null,
                     modifier = Modifier
-                        .background(colorResource(R.color.image_background))
                         .padding(12.dp)
                 )
             }
