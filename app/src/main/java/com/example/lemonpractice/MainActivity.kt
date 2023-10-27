@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Lemonade()
+                    LemonApp()
                 }
             }
         }
@@ -129,7 +129,6 @@ fun Lemonade(
     imageClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val result =
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -141,7 +140,7 @@ fun Lemonade(
             {
                 Image(
                     painter = painterResource(drawableId),
-                    contentDescription = stringResource(null),
+                    contentDescription = null,
                     modifier = Modifier
                         .background(colorResource(R.color.image_background))
                         .padding(12.dp)
