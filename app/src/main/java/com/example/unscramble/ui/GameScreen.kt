@@ -97,9 +97,7 @@ fun GameScreen(
 
             Button(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .padding(start = 8.dp),
+                    .fillMaxWidth(),
                 onClick = { gameViewModel.checkUserGuess() }
             ) {
                 Text(
@@ -120,6 +118,12 @@ fun GameScreen(
         }
 
         GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))
+    }
+    if(gameUiState.isGameOver){
+        FinalScoreDialog(
+            score = gameUiState.score,
+            onPlayAgain = { gameViewModel.resetGame() }
+        )
     }
 }
 
@@ -189,7 +193,7 @@ fun GameLayout(
                 ),
                 onValueChange = onUserGuessChanged,
                 label = {
-                    if(isGuessWrong){
+                    if (isGuessWrong) {
                         Text(stringResource(id = R.string.wrong_guess))
                     } else {
                         Text(stringResource(id = R.string.enter_your_word))
