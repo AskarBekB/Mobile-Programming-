@@ -89,6 +89,13 @@ fun ReplyHomeScreen(
             navigationItemContentList = navigationItemContentList,
             modifier = modifier
         )
+    } else {
+        ReplyDetailsScreen(
+            replyUiState = replyUiState,
+            onBackPressed = onDetailScreenBackPressed,
+            modifier = modifier
+        )
+
     }
 }
 
